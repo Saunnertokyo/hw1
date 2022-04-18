@@ -174,11 +174,11 @@ INSERT INTO actors (
   name,
   movie_id
 )
-VALUES('Christian Bale',1);
+VALUES('Christian Bale ',1);
 
 INSERT INTO actors (
   name,movie_id)
-VALUES('Michael Caine',1
+VALUES('Michael Caine ',1
 );
 
 INSERT INTO actors (
@@ -202,7 +202,7 @@ VALUES('Gary Oldman ',1
 INSERT INTO actors (
   name,
   movie_id)
-VALUES('Christian Bale',2
+VALUES('Christian Bale ',2
 );
 
 INSERT INTO actors (
@@ -220,7 +220,7 @@ VALUES('Aaron Eckhart',2
 INSERT INTO actors (
   name,
   movie_id)
-VALUES('Michael Caine',2
+VALUES('Michael Caine ',2
 );
 
 INSERT INTO actors (
@@ -232,7 +232,7 @@ VALUES('Maggie Gyllenhaal',2
 INSERT INTO actors (
   name,
   movie_id)
-VALUES('Christian Bale',3
+VALUES('Christian Bale ',3
 );
 
 INSERT INTO actors (
@@ -305,13 +305,22 @@ INSERT INTO actor_characters (actor_id,character_id)
 VALUES(5,5);
 
 INSERT INTO actor_characters (actor_id,character_id)
+VALUES(6,1);
+
+INSERT INTO actor_characters (actor_id,character_id)
 VALUES(7,6);
 
 INSERT INTO actor_characters (actor_id,character_id)
 VALUES(8,7);
 
 INSERT INTO actor_characters (actor_id,character_id)
+VALUES(9,2);
+
+INSERT INTO actor_characters (actor_id,character_id)
 VALUES(10,4);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(11,1);
 
 INSERT INTO actor_characters (actor_id,character_id)
 VALUES(12,5);
@@ -350,23 +359,4 @@ SELECT movies.title,actors.name,characters.name
 FROM movies
 INNER JOIN actors ON movies.id = actors.movie_id
 INNER JOIN actor_characters ON actors.id = actor_characters.actor_id
-INNER JOIN characters ON characters.id = actor_characters.character_id;
-
--- Top Cast
--- ========
-
--- Batman Begins          Christian Bale        Bruce Wayne
--- Batman Begins          Michael Caine         Alfred
--- Batman Begins          Liam Neeson           Ra's Al Ghul
--- Batman Begins          Katie Holmes          Rachel Dawes
--- Batman Begins          Gary Oldman           Commissioner Gordon
--- The Dark Knight        Christian Bale        Bruce Wayne
--- The Dark Knight        Heath Ledger          Joker
--- The Dark Knight        Aaron Eckhart         Harvey Dent
--- The Dark Knight        Michael Caine         Alfred
--- The Dark Knight        Maggie Gyllenhaal     Rachel Dawes
--- The Dark Knight Rises  Christian Bale        Bruce Wayne
--- The Dark Knight Rises  Gary Oldman           Commissioner Gordon
--- The Dark Knight Rises  Tom Hardy             Bane
--- The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
--- The Dark Knight Rises  Anne Hathaway         Selina Kyle
+INNER JOIN characters ON actor_characters.character_id = characters.id;
