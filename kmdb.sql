@@ -101,158 +101,229 @@
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
+DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS movies;
-DROP TABLE IF EXISTS casts;
+DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS actor_characters ;
 
 -- Create new tables, according to your domain model
 -- TODO!
+CREATE TABLE studios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  studio TEXT
+  );
+
 CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT,
   year TEXT,
   mpaa_rate TEXT,
-  studio TEXT
+  studio_id INTEGER
 );
 
-CREATE TABLE casts (
+CREATE TABLE actors (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
-  character TEXT,
-  movie_id TEXT
+  movie_id INTEGER
+);
+
+CREATE TABLE characters (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT
+);
+
+CREATE TABLE actor_characters (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  actor_id INTEGER,
+  character_id INTEGER
 );
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
-INSERT INTO movies (
-  title,
-  year,
-  mpaa_rate,
-  studio
-)
-VALUES (" Batman Begins","2005","PG-13","Warner Bros.");
+INSERT INTO studios (
+  studio)
+VALUES ("Warner Bros.");
 
 INSERT INTO movies (
   title,
   year,
   mpaa_rate,
-  studio
+  studio_id
 )
-VALUES ("The Dark Knight","2008",'PG-13',"Warner Bros.");
+VALUES (" Batman Begins","2005","PG-13",1);
 
 INSERT INTO movies (
   title,
   year,
   mpaa_rate,
-  studio
+  studio_id
 )
-VALUES ("The Dark Knight Rises","2012",'PG-13',"Warner Bros.");
+VALUES ("The Dark Knight","2008",'PG-13',1);
 
-INSERT INTO casts (
+INSERT INTO movies (
+  title,
+  year,
+  mpaa_rate,
+  studio_id
+)
+VALUES ("The Dark Knight Rises","2012",'PG-13',1);
+
+INSERT INTO actors (
   name,
-  character,
   movie_id
 )
-VALUES('Christian Bale',"Bruce Wayne",1);
+VALUES('Christian Bale',1);
 
-INSERT INTO casts (
-  name,character,movie_id)
-VALUES('Michael Caine',"Alfred",1
+INSERT INTO actors (
+  name,movie_id)
+VALUES('Michael Caine',1
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Liam Neeson',"Ra's Al Ghul",1
+VALUES('Liam Neeson',1
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Katie Holmes',"Rachel Dawes",1
+VALUES('Katie Holmes',1
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Gary Oldman ',"Commissioner Gordon",1
+VALUES('Gary Oldman ',1
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Christian Bale',"Bruce Wayne",2
+VALUES('Christian Bale',2
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Heath Ledger',"Joker",2
+VALUES('Heath Ledger',2
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Aaron Eckhart',"Harvey Dent",2
+VALUES('Aaron Eckhart',2
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Michael Caine',"Alfred",2
+VALUES('Michael Caine',2
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Maggie Gyllenhaal',"Rachel Dawes",2
+VALUES('Maggie Gyllenhaal',2
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Christian Bale',"Bruce Wayne",3
+VALUES('Christian Bale',3
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Gary Oldman ',"Commissioner Gordone",3
+VALUES('Gary Oldman ',3
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Tom Hardy',"Bane",3
+VALUES('Tom Hardy',3
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Joseph Gordon-Levitt',"John Blake",3
+VALUES('Joseph Gordon-Levitt',3
 );
 
-INSERT INTO casts (
+INSERT INTO actors (
   name,
-  character,
   movie_id)
-VALUES('Anne Hathaway',"Selina Kyle",3
+VALUES('Anne Hathaway',3
 );
 
-SELECT * from movies;
-SELECT * from casts;
+INSERT INTO characters (name)
+VALUES("Bruce Wayne");
+
+INSERT INTO characters (name)
+VALUES("Alfred");
+
+INSERT INTO characters (name)
+VALUES("Ra's Al Ghul");
+
+INSERT INTO characters (name)
+VALUES("Rachel Dawes");
+
+INSERT INTO characters (name)
+VALUES("Commissioner Gordon");
+
+INSERT INTO characters (name)
+VALUES("Joker");
+
+INSERT INTO characters (name)
+VALUES("Harvey Dent");
+
+INSERT INTO characters (name)
+VALUES("Bane");
+
+INSERT INTO characters (name)
+VALUES("John Blake");
+
+INSERT INTO characters (name)
+VALUES("Selina Kyle");
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(1,1);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(2,2);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(3,3);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(4,4);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(5,5);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(7,6);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(8,7);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(10,4);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(12,5);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(13,8);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(14,9);
+
+INSERT INTO actor_characters (actor_id,character_id)
+VALUES(15,10);
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -261,6 +332,9 @@ SELECT * from casts;
 
 -- The SQL statement for the movies output
 -- TODO!
+SELECT movies.title,movies.year,movies.mpaa_rate,studios.studio
+FROM studios
+INNER JOIN movies ON studios.id = movies.studio_id;
 
 -- Prints a header for the cast output
 .print ""
@@ -271,3 +345,24 @@ SELECT * from casts;
 
 -- The SQL statement for the cast output
 -- TODO!
+
+
+
+-- Top Cast
+-- ========
+
+-- Batman Begins          Christian Bale        Bruce Wayne
+-- Batman Begins          Michael Caine         Alfred
+-- Batman Begins          Liam Neeson           Ra's Al Ghul
+-- Batman Begins          Katie Holmes          Rachel Dawes
+-- Batman Begins          Gary Oldman           Commissioner Gordon
+-- The Dark Knight        Christian Bale        Bruce Wayne
+-- The Dark Knight        Heath Ledger          Joker
+-- The Dark Knight        Aaron Eckhart         Harvey Dent
+-- The Dark Knight        Michael Caine         Alfred
+-- The Dark Knight        Maggie Gyllenhaal     Rachel Dawes
+-- The Dark Knight Rises  Christian Bale        Bruce Wayne
+-- The Dark Knight Rises  Gary Oldman           Commissioner Gordon
+-- The Dark Knight Rises  Tom Hardy             Bane
+-- The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
+-- The Dark Knight Rises  Anne Hathaway         Selina Kyle
